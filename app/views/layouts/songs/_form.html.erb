@@ -1,0 +1,10 @@
+  
+<h1>Add a new song here:</h1>
+<%= form_with model: @user do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <%= f.label :artist %>
+    <%= f.text_field :artist %>
+    <%= f.submit 'Submit Song' %>
+<% end %>
+
