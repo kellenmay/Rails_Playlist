@@ -1,0 +1,34 @@
+<div class="container login">
+  <section id="login-btns">
+    <button type="button" name="button" class="login-button"  onclick="signIn()">Sign In</button>
+    <button type="button" name="button" class="login-button" onclick="signUp()">Sign Up</button>
+  </section>
+  <section>
+    <%= form_with model: model, url: url, method: :post, html: {id: 'formx'} do |form| %>
+      <%= form.label "Email:", class: "login-setup" %><br>
+      <%= form.text_field :email %><br>
+      <%= form.label "Password:" %><br>
+      <%= form.password_field :password %><br>
+      <% if sign_up %>
+      <%= form.label "Re-enter password", class: "re-pass" %><br>
+      <%= form.password_field :repass, class: "re-pass" %><br>
+      <% end %>
+      <br>
+      <%= form.submit "Login", id: "login-btn" %>
+    <% end %>
+  </section>
+  <section id="facebook-btn">
+    <%= button_to "Sign in with Facebook", "/auth/facebook", method: :post, id: "fb-btn" %>
+  </section>
+</div>
+
+<script type="text/javascript">
+  function signIn() {
+    window.location.href = "/login"
+  }
+
+  function signUp() {
+    window.location.href = "/users/new"
+  }
+
+</script>
