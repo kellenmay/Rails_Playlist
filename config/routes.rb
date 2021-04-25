@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
 
   resources :users
+  resources :songs
+
+  resources :playlists
 
   root 'sessions#new'
   get '/login', to: 'sessions#new'
