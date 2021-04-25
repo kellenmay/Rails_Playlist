@@ -1,0 +1,7 @@
+  
+<h1>Create New Playlist:</h1>
+<%= form_with model: @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit 'Create Playlist' %>
+<% end %>
