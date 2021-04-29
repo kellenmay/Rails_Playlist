@@ -2,6 +2,8 @@
 
 <% @playlists.each do |playlist| %>
     <p>
-        Title:<%= playlist.name %> Artist:<%= playlist.artist %> 
+        Title:<%= playlist.name %> Artist:<%= playlist.user.email %> 
     </p>
 <% end %>
+
+<%= render partial: "buttons" %>

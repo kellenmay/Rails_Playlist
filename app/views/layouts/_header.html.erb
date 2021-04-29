@@ -1,0 +1,17 @@
+      <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "sample app", '#', id: "logo" %>
+          <nav>
+            <ul class="nav pull-right">
+                    <li><%= link_to "Home",    '/' %></li>
+                    <li><%= link_to "Sign in", '/login' %></li>
+                    <li><%= link_to "Log Out",    '/logout' %></li>
+                    <% if !logged_in %>
+                    <a href="/users/<%=current_user.id%>"><input type="submit" value="Profile"></a>
+                    <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>

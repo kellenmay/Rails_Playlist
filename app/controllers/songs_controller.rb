@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
-    
+    include UsersHelper
+
     def index 
         @songs = Song.all
     end 
@@ -39,6 +40,8 @@ class SongsController < ApplicationController
         @song.destroy 
         redirect_to songs_path
     end 
+
+    
   
   private 
   

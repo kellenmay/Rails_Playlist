@@ -1,5 +1,8 @@
 class PlaylistsController < ApplicationController
-    
+    include UsersHelper
+    include SongsHelper
+    include PlaylistsHelper
+
     def index 
         @playlists = Playlist.all
     end 
@@ -9,24 +12,37 @@ class PlaylistsController < ApplicationController
     end
   
     def create
-        @playlist = Playlist.new(playlist_params)
+        @playlist = Playlist.new(name: playlist_params[:name])
+        # binding.pry
+        @playlist.user_id = current_user.id
+        @playlist.playlist_library_id = PlaylistLibrary.first.id
+
         if @playlist.save
+            playlist_params[:song_ids].each do |song|
+                # binding.pry
+                if song != ""
+                 PlaylistSong.create(playlist_id: @playlist.id, song_id: song)
+                end
+            end
+
             redirect_to playlist_path(@playlist)
+        
         else 
+            # binding.pry
             render :new
         end 
     end 
-  
+
     def show 
-        @playlist = Playlist.find_by_id(params[:id])
+        current_playlist
     end 
   
     def edit 
-        @playlist = Playlist.find_by_id(params[:id])
+        current_playlist
     end 
   
     def update 
-        @playlist = Playlist.find_by_id(params[:id])
+        current_playlist
         if @playlist.update(playlist_params)
             redirect_to playlist_path(@playlist)
         else 
@@ -35,7 +51,7 @@ class PlaylistsController < ApplicationController
     end 
   
     def destroy 
-        @playlist = Playlist.find_by_id(params[:id])
+        current_playlist
         @playlist.destroy 
         redirect_to playlists_path
     end 
@@ -43,7 +59,8 @@ class PlaylistsController < ApplicationController
   private 
   
     def playlist_params
-        params.require(:playlist).permit(:name)
+        params.require(:playlist).permit(:name, song_ids: [])
+        # params.require(:playlist).permit(:name)
     end 
   
   end

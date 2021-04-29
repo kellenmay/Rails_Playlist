@@ -7,9 +7,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body>
+  <br>
+     <%= render 'layouts/header' %>
     <%= yield %>
+                    <li><%= link_to "Songs",    '/' %></li>
+                    <li><%= link_to "Playlists", '/playlists' %></li>
+
   </body>
 </html>

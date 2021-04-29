@@ -1,7 +1,12 @@
   
 <h1>Create New Playlist:</h1>
-<%= form_with model: @user do |f| %>
+<%= form_with model: @playlist, url: playlists_path, method: :post do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
+    <br>
+    <%= f.collection_check_boxes :song_ids, Song.order(:title), :id, :title %><br>
     <%= f.submit 'Create Playlist' %>
 <% end %>
+
+
+ <%= button_to "Home", "/user/:id", method: :post, id: ":user_id" %>

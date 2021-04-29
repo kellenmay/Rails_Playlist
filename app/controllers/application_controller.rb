@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-    include ApplicationHelper
-
+    include UsersHelper
+    include SongsHelper
+    include PlaylistsHelper
     def welcome 
         if !logged_in?
             redirect_to root_path
