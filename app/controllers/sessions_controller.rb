@@ -7,9 +7,20 @@ class SessionsController < ApplicationController
     end 
   end
 
-  # def omniauth
-  #     user.find_or_create_by
-  # end
+  def omniauth
+      user = User.find_or_create_by(uid: response[:uid], provider: response[:provider]) do |u|
+        u.name = response[:info][:name]
+        u.email = respose[:info][:email]
+        u.password = SecureRandom.hex(15)
+      end
+        if user.valid?
+          session[:user_id] = user.id
+          redirect_to user_path(user)
+        else
+          redirect_to '/login'
+      end
+
+  end
 
 
   def create # processing the login form
@@ -24,7 +35,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :user_id
+    session.destroy
     redirect_to '/login'
   end
 end

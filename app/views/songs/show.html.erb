@@ -3,3 +3,6 @@
 <p>Title: <%= @song.title %></p>
 <br>
 <p>Artist: <%= @song.artist %></p>
+
+
+<li><%= button_to "Delete", @song, method: :delete %></li>

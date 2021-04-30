@@ -2,3 +2,6 @@
 
 <p> <%= @playlist.name %></p>
 <%= render partial: "buttons" %>
+
+
+<li><%= button_to "Delete", @playlist, method: :delete %></li>
