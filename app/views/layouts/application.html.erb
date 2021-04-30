@@ -15,9 +15,9 @@
   <br>
      <%= render 'layouts/header' %>
     <%= yield %>
-                    <li><%= link_to "Profile",    '/users/:id' %></li>
-                    <li><%= link_to "Songs",    '/songs' %></li>
-                    <li><%= link_to "Playlists", '/playlists' %></li>
+                    <li><%= link_to "Profile",    user_path(current_user.id) %></li>
+                    <li><%= link_to "Songs",    songs_path %></li>
+                    <li><%= link_to "Playlists", playlists_path %></li>
 
   </body>
 </html>

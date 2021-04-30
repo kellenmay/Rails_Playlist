@@ -2,14 +2,19 @@ class UsersController < ApplicationController
   include UsersHelper
   include SongsHelper
   include PlaylistsHelper
+  include ApplicationHelper
 
   def index 
       @users = User.all
   end 
   
-  def new
-      @user = User.new
-  end
+  def new # render a signup form
+    if !logged_in?
+        @user = User.new
+    else 
+        redirect_to root_path
+    end 
+end
 
   def create
       @user = User.new(user_params)

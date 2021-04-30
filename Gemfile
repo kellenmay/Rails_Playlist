@@ -51,3 +51,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "thin", "~> 1.8"
 gem "omniauth-facebook", "~> 8.0"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+
+gem 'dotenv-rails'
+gem 'omniauth-google-oauth2'

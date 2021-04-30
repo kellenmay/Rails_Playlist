@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_143542) do
+ActiveRecord::Schema.define(version: 2021_04_30_171124) do
 
   create_table "playlist_libraries", force: :cascade do |t|
     t.string "show"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_143542) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider"
     t.string "uid"
+    t.string "name"
   end
 
 end

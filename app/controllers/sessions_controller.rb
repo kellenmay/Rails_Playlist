@@ -1,15 +1,26 @@
 class SessionsController < ApplicationController
-  def new
-    @user = User.new
+  include ApplicationHelper
+  
+  def new # render the login form
+    if logged_in?
+      redirect_to users_path
+    end 
   end
 
-  def create
-    return redirect_to '/login' if !params[:email] || params[:email].empty?
+  # def omniauth
+  #     user.find_or_create_by
+  # end
+
+
+  def create # processing the login form
+    # what do i need to do first?
     user = User.find_by(email: params[:email])
-    user = user.try(:authenticate, params[:password])
-    return redirect_to '/login' unless user
-    session[:user_id] = user.id
-    redirect_to user_path(user)
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to root_path
+    else 
+      render :new
+    end 
   end
 
   def destroy
