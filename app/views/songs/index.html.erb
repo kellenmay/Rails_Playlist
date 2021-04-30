@@ -1,5 +1,10 @@
-<h1>All Songs:</h1>
 
+
+<% if @playlist%>
+    <%= @playlist.name%>'s songs
+<% else %>
+<h1>All Songs:</h1>
+<% end %>
 <% @songs.each do |song| %>
     <p>
         Title:<%= song.title %>
@@ -7,3 +12,8 @@
         Artist:<%= song.artist %> 
     </p>
 <% end %>
+
+
+
+<%= render partial: "buttons" %>
+<%= render partial: "playlists/buttons" %>

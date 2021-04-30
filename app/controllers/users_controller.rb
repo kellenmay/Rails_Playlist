@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-    
+  include UsersHelper
+  include SongsHelper
+  include PlaylistsHelper
+
   def index 
       @users = User.all
   end 
@@ -20,6 +23,7 @@ class UsersController < ApplicationController
 
   def show 
     find_user
+    # binding.pry
   end 
 
   def edit 

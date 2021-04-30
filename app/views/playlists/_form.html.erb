@@ -9,4 +9,12 @@
 <% end %>
 
 
- <%= button_to "Home", "/user/:id", method: :post, id: ":user_id" %>
+    <% form_with url: new_playlist_song_path, method: :get do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+        <%= f.label :artist %>
+        <%= f.text_field :artist %>
+    <%= f.submit "Submit Song" %>
+    <% end %>
+
+    <%= button_to "Home", "/user/:id", method: :post, id: ":user_id" %>

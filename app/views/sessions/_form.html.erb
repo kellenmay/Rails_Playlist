@@ -17,7 +17,9 @@
       <%= form.submit "Login", id: "login-btn" %>
     <% end %>
   </section>
-
+  <section id="facebook-btn">
+    <%= button_to "Sign in with Facebook", "/auth/facebook", method: :post, id: "fb-btn" %>
+  </section>
 </div>
 
 <script type="text/javascript">

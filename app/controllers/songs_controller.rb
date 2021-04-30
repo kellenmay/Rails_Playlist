@@ -2,7 +2,14 @@ class SongsController < ApplicationController
     include UsersHelper
 
     def index 
-        @songs = Song.all
+        # binding.pry
+        #if its a nested route, render nested resources data
+        if params[:playlist_id]
+            @playlist = Playlist.find_by(params[:playlist_id])
+            @songs = @playlist.songs
+        else
+            @songs = Song.all
+        end
     end 
     
     def new
