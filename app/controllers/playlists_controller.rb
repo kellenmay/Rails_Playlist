@@ -28,7 +28,6 @@ class PlaylistsController < ApplicationController
 
     def show 
         current_playlist
-        #   @new_song = @playlist.song_ids.build
     end 
   
     def edit 
@@ -54,7 +53,6 @@ class PlaylistsController < ApplicationController
   
     def playlist_params
         params.require(:playlist).permit(:name, song_ids: [])
-        # params.require(:playlist).permit(:name)
     end 
   
   end

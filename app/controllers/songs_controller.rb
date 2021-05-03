@@ -3,7 +3,6 @@ class SongsController < ApplicationController
     include PlaylistsHelper
 
     def index 
-        
         #if its a nested route, render nested resources data
         if params[:playlist_id]
             @playlist = Playlist.find_by(params[:playlist_id])
