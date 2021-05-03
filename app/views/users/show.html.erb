@@ -1,13 +1,12 @@
 <h1>Your Profile:</h1>
 Here is a list of your playlists: 
 
-<% if @author = current_user %>
-    <% playlist_list.each do |p| %>
+
+    <% user_playlists.each do |p| %>
     <p>
-        Title:<%= p.name %>
-        <%= render partial: "playlists/edit_playlist" %>  
+        Title:<%= p.name %> 
     </p>
 <% end %>
-<% end %>
+
 
 <%= render partial: "buttons" %>

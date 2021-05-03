@@ -1,5 +1,15 @@
 <header>
+<% if current_user %>
+<li><%= link_to "Profile",    '/profile' %></li>
+<% end %>
+<li><%= link_to "Creat New Song", '/songs/new' %></li>
+
+<li><%= link_to "Creat New Playlist", '/playlists/new' %></li>
+
+<li><%= link_to "Songs",    songs_path %></li>
+
+<li><%= link_to "Playlists", playlists_path %></li>
 
 
-
+    
 </header>

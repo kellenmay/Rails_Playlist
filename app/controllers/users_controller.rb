@@ -26,10 +26,8 @@ end
       end 
   end 
 
-  def show 
-    find_user
-    # binding.pry
-  end 
+  def show
+  end
 
   def edit 
     find_user
@@ -43,6 +41,10 @@ end
           render :edit
       end 
   end 
+
+  def profile
+    redirect_to user_path(current_user)
+  end
 
   def destroy 
     find_user
@@ -62,3 +64,19 @@ private
 
 
 end
+
+
+
+def create
+  if params[:playlist_id]
+      @playlist = Playlist.find_by(params[:playlist_id])
+      @songs = @playlist.songs.build(song_params)
+  else
+       @song = Song.new(song_params)
+  end
+  if @song.save
+      redirect_to song_path(@song)
+  else 
+      render :new
+  end 
+end 

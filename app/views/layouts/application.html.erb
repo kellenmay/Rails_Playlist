@@ -15,11 +15,6 @@
   <br>
      <%= render 'layouts/header' %>
     <%= yield %>
-    <% if current_user %>
-                    <li><%= link_to "Profile",    user_path(current_user.id) %></li>
-                    <% end %>
-                    <li><%= link_to "Songs",    songs_path %></li>
-                    <li><%= link_to "Playlists", playlists_path %></li>
 
   </body>
 </html>

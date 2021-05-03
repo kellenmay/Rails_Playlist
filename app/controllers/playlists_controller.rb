@@ -4,7 +4,7 @@ class PlaylistsController < ApplicationController
     include PlaylistsHelper
 
     def index 
-        @playlists = Playlist.all
+        all_playlists
     end 
     
     def new
@@ -13,29 +13,22 @@ class PlaylistsController < ApplicationController
   
     def create
         @playlist = Playlist.new(name: playlist_params[:name])
-        # binding.pry
         @playlist.user_id = current_user.id
-        @playlist.playlist_library_id = PlaylistLibrary.first.id
-
         if @playlist.save
             playlist_params[:song_ids].each do |song|
-                # binding.pry
                 if song != ""
                  PlaylistSong.create(playlist_id: @playlist.id, song_id: song)
                 end
             end
-
             redirect_to playlist_path(@playlist)
-        
         else 
-            # binding.pry
             render :new
         end 
     end 
 
     def show 
         current_playlist
-        @new_song = @playlist.song_ids.build
+        #   @new_song = @playlist.song_ids.build
     end 
   
     def edit 

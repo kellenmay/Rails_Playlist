@@ -1,7 +1,23 @@
 <h1>Playlists Show Page</h1>
 
 <p> <%= @playlist.name %></p>
-<%= render partial: "buttons" %>
+Songs'
+<p>Title: </p>
+<br>
+
+<% @playlist.songs.each do |song| %>
+    <p>
+        Title:<%= song.title %>
+        <br>
+        Artist:<%= song.artist %> 
+    </p>
+<% end %>
+
+
 
 
 <li><%= button_to "Delete", @playlist, method: :delete %></li>
+
+
+
+<%= render partial: "users/buttons" %>

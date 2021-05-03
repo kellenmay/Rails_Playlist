@@ -1,6 +1,9 @@
   
 <h1>Create a new Song:</h1>
-<%= form_with model: @song do |f| %>
+<%= form_with model: @song, url: songs_path do |f| %>
+<% if current_nested_playlist%>
+    <%= f.hidden_field :playlist_id, value: @playlist.id%>
+<% end %>
     <%= f.label :title %>
     <%= f.text_field :title %>
     <%= f.label :artist %>

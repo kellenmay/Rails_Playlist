@@ -1,8 +1,9 @@
 class SongsController < ApplicationController
     include UsersHelper
+    include PlaylistsHelper
 
     def index 
-        # binding.pry
+        
         #if its a nested route, render nested resources data
         if params[:playlist_id]
             @playlist = Playlist.find_by(params[:playlist_id])
@@ -13,17 +14,30 @@ class SongsController < ApplicationController
     end 
     
     def new
+        if params[:playlist_id]
+            @playlist = Playlist.find_by(params[:playlist_id])
+            @songs = @playlist.songs.build
+        else
         @song = Song.new
+        end
     end
   
     def create
-        @song = Song.new(song_params)
+            if params[:playlist_id]
+            @playlist = current_nested_playlist
+            @song = @playlist.songs.build(song_params)
+            @playlist.save
+           
+        else
+             @song = Song.new(song_params)
+        end
+
         if @song.save
-            redirect_to song_path(@song)
+            redirect_to playlists_path(@playlist)
         else 
             render :new
         end 
-    end 
+    end     
   
     def show 
         @song = Song.find_by_id(params[:id])
@@ -53,7 +67,7 @@ class SongsController < ApplicationController
   private 
   
     def song_params
-        params.require(:song).permit(:title, :artist)
+        params.permit(:title, :artist)
     end 
   
   end

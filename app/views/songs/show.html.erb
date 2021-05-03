@@ -1,8 +1,13 @@
 <h1>Songs Show Page</h1>
 
-<p>Title: <%= @song.title %></p>
+Title: <%= @song.title %>
 <br>
-<p>Artist: <%= @song.artist %></p>
+Artist: <%= @song.artist %>
 
 
 <li><%= button_to "Delete", @song, method: :delete %></li>
+
+
+
+
+<%= render partial: "users/buttons" %>

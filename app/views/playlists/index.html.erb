@@ -2,9 +2,9 @@
 
 <% @playlists.each do |playlist| %>
     <p>
-        Title:<%= playlist.name %> Artist:<%= playlist.user.email %> 
+        <li>Title:<%= playlist.name %> Artist:<%= playlist.user.email %> 
+        <%= link_to "View", playlist, method: :show %></li>
     </p>
 <% end %>
 
-<%= render partial: "buttons" %>
-<%= render partial: "songs/buttons" %>
+<%= render partial: "users/buttons" %>

@@ -1,0 +1,12 @@
+ Your Profile!!
+ 
+    <%binding.pry%>
+<% if @playlist.user_id = current_user.id%>
+<% @playlist.songs.each do |song| %>
+    <p>
+        Title:<%= song.title %>
+        <br>
+        Artist:<%= song.artist %> 
+    </p>
+<% end %>
+<% end %>
