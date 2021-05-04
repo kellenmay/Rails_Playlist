@@ -3,4 +3,13 @@ class Song < ApplicationRecord
     has_many :playlists, through: :playlist_songs
     
 
+    
+    def self.search(item)
+        if item
+            self.where('title LIKE ?', "%#{item}%")
+        else
+            @songs = Song.all
+        end
+    end
+
 end

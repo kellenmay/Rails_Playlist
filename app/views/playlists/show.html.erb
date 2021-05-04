@@ -11,7 +11,7 @@
 <% end %>
 
 
-<li><%= link_to "Add Songs to Playlist", '/playlists/:id/songs/new' %></li>
+<li><%= link_to "Add Songs to Playlist", new_playlist_song_path(@playlist) %></li>
 
 <%= button_to "Delete", @playlist, method: :delete %>
 

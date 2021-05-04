@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
     include UsersHelper
     include PlaylistsHelper
+    include SongsHelper
 
     def index 
         #if its a nested route, render nested resources data
@@ -8,7 +9,7 @@ class SongsController < ApplicationController
             @playlist = Playlist.find_by(params[:playlist_id])
             @songs = @playlist.songs
         else
-            @songs = Song.all
+            @songs = Song.search(params[:item]) 
         end
     end 
     
@@ -66,7 +67,7 @@ class SongsController < ApplicationController
   private 
   
     def song_params
-        params.permit(:title, :artist)
+        params.permit(:title, :artist, :item)
     end 
   
   end
