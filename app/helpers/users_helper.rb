@@ -1,5 +1,17 @@
 module UsersHelper
   
+
+  def display_errors_for_user
+    if @user.errors.any?
+        content_tag(:h3, "Please note errors below:")
+        content_tag(:ul) do
+            @user.errors.full_messages.each do |m| 
+                concat content_tag(:li, m) 
+            end
+        end
+    end
+  end
+  
   def current_user_id
     session[:user_id]
   end
@@ -23,9 +35,18 @@ module UsersHelper
     return @user_playslists
   end
 
-
-
-
+  def user_profile_page
+    user_playlists.each do |p|
+      @playlist_name = p.name
+    end
+    @playlist_name
+  end
+    
+  def users_index_page
+    @users.each do |user|
+      user.email
+    end
+  end
 
 
 end

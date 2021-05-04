@@ -1,10 +1,6 @@
-<h1>Playlists Show Page</h1>
+<h1>Songs on Playlist</h1>
 
-<p> <%= @playlist.name %></p>
-Songs'
-
-<p>Title: </p>
-<br>
+<p><%= @playlist.name %></p>
 
 <% @playlist.songs.each do |song| %>
     <p>
@@ -15,10 +11,9 @@ Songs'
 <% end %>
 
 
-
+<li><%= link_to "Add Songs to Playlist", '/playlists/:id/songs/new' %></li>
 
 <%= button_to "Delete", @playlist, method: :delete %>
-
 
 
 <%= render partial: "users/buttons" %>

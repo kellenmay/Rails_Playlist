@@ -1,0 +1,5 @@
+ <%= form_with url: songs_path, method: :get do |f| %>
+  <%= f.label :query, "Search Songs:" %>
+  <%= f.text_field :query %>
+  <%= f.submit "Search" %>
+<% end %>
