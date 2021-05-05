@@ -16,25 +16,27 @@ class SongsController < ApplicationController
     def new
         if params[:playlist_id]
             @playlist = Playlist.find_by(params[:playlist_id])
-            @songs = @playlist.songs.build
+            @song = @playlist.songs.build
         else
         @song = Song.new
         end
     end
   
-    def create
-            if params[:playlist_id]
+    def create  
+        if params[:playlist_id]
             @playlist = current_nested_playlist
             @song = @playlist.songs.build(song_params)
             @playlist.save
-           
+            redirect_to playlists_path(@playlist
         else
              @song = Song.new(song_params)
         end
-
+        binding.pry
         if @song.save
             redirect_to playlists_path(@playlist)
         else 
+            
+            flash[:errors] = @song.errors.full_messages
             render :new
         end 
     end     
@@ -67,7 +69,7 @@ class SongsController < ApplicationController
   private 
   
     def song_params
-        params.permit(:title, :artist, :item)
+        params.require(:song).permit(:title, :artist, :user_id, :item, :playlist_id)
     end 
   
   end

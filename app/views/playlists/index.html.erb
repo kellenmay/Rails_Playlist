@@ -3,7 +3,9 @@
 <% @playlists.each do |playlist| %>
     <p>
         <li>Title:<%= playlist.name %> Artist:<%= playlist.user.email %> 
-        <%= link_to "View", playlist, method: :show %></li>
+
+            <%= link_to "View", playlist, method: :show %></li>
+
     </p>
 <% end %>
 

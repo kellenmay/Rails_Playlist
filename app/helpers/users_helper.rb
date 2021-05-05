@@ -16,6 +16,12 @@ module UsersHelper
     session[:user_id]
   end
 
+  def current_user_email
+    @user = User.find_by_id(session[:user_id])
+    @user.email
+  end
+
+
   def current_user
     User.find_by_id(session[:user_id])
   end
@@ -41,6 +47,14 @@ module UsersHelper
     end
     @playlist_name
   end
+
+  def profile_view_from_profile
+    user_playlists.each do |p|
+      @playlist_id = p.id
+    end
+    @playlist_id
+  end
+  
     
   def users_index_page
     @users.each do |user|

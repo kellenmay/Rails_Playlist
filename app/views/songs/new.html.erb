@@ -1,4 +1,7 @@
+<% if @playlist%>
+<%= render partial: "song" %>
+<% else %>
 <%= render partial: "form" %>
-
+<%end%>
 
 <%= render partial: "users/buttons" %>

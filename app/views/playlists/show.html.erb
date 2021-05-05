@@ -11,9 +11,10 @@
 <% end %>
 
 
-<li><%= link_to "Add Songs to Playlist", new_playlist_song_path(@playlist) %></li>
-
-<%= button_to "Delete", @playlist, method: :delete %>
+    <% if @playlist.user_id == current_user.id%>
+        <li><%= link_to "Add Songs to Playlist", new_playlist_song_path(@playlist) %></li>
+        <%= button_to "Delete", @playlist, method: :delete %>
+    <% end%>
 
 
 <%= render partial: "users/buttons" %>

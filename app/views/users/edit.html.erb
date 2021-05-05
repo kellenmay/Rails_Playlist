@@ -1,7 +1,11 @@
 <h1>Edit User:</h1>
-<%= render partial: "users/errors", locals: {object: @user} %>
-<%= render partial: "form", locals: {f: @user } %>
-
+<%= form_with model: @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <%= f.submit 'Sign Up' %>
+<% end %>
 
 
 <%= render partial: "buttons" %>

@@ -1,10 +1,12 @@
-<h1>Your Profile:</h1>
+<h1><%= current_user_email %></h1>
 Here is a list of your playlists: 
 
 
 <br>
 Playlist Name:
 <%= user_profile_page %>
+
+<%= link_to "View", playlist_songs_path(profile_view_from_profile) %>
 <br><br><br>
 
 
