@@ -1,0 +1,6 @@
+Iterate over Songs.all to get songs for drop down list 
+<%= form_with model: @playlist_song, url: playlist_playlist_songs_path(@playlist) do |f| %>
+<%= f.hidden_field :playlist_id, value: @playlist.id%>
+<%= f.collection_select(:song_id, Song.all, :id, :title, prompt: true) %>
+<%= f.submit %>
+<%end%>

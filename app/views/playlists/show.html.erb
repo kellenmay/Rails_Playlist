@@ -1,17 +1,24 @@
 <h1>Songs on Playlist</h1>
 
+
+<%= button_to "Rate Playlist", new_playlist_playlist_user_path(@playlist), method: :get %>
+
 <p><%= @playlist.name %></p>
 
-  <ul>  <% @playlist.playlist_users.each do |r|%>
-   <li> User:
-    <b><%= r.user.email%></b>
-    <br>
-    Rating:
-    <b><%= r.rating %></b>
-    out of 5.</li>
-    <%end%> </ul>
 
- <% %>
+        <ul>  <% @playlist.playlist_users.each do |r|%>
+             <li> User:
+                <b><%= r.user.email%></b>
+                <br>
+                    Rating:
+                        <b><%= r.rating %></b>
+                        out of 5.</li>
+            
+                <% if !r.rating %>
+                        Be the first to rate this playlist!
+                <% end %>
+        <%end%> </ul>
+
 
 
 
@@ -24,13 +31,6 @@
 <% end %>
 
 
-
-    <% if @playlist.user_id == current_user.id%>
-        <li><%= link_to "Add Songs to Playlist", new_playlist_song_path(@playlist) %></li>
-        <%= button_to "Delete", @playlist, method: :delete %>
-    <% end%>
-
-
- <% %>
+<%= button_to "Edit Playlist", edit_playlist_path(@playlist), method: :get %>   
 
 <%= render partial: "users/buttons" %>

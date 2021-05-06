@@ -1,12 +1,11 @@
       <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "sample app", '#', id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-                    <li><%= link_to "Home",    '/profile' %></li>
+                    <%= button_to "Home",    '/profile', method: :get %>
                     
-                    <li><%= link_to "Log Out",    '/logout' %></li>
+                    <%= button_to "Log Out",    '/logout', method: :get %>
             </ul>
           </nav>
         </div>

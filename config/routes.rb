@@ -15,13 +15,11 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
 
-
-
   resources :users
   resources :songs
 
   resources :playlists do
-    resources :songs, only: [:index, :new, :create]
+    resources :playlist_songs, only: [:index, :new, :create]
     resources :playlist_users, only: [:new, :create, :edit, :update, :destory]
   end
 

@@ -22,7 +22,7 @@ class PlaylistsController < ApplicationController
             end
             redirect_to playlist_path(@playlist)
         else 
-            binding.pry
+
             render :new
         end 
     end 
@@ -34,10 +34,16 @@ class PlaylistsController < ApplicationController
     end 
   
     def edit 
+        get_playlist
+        redirect_if_not_authorized
         current_playlist
     end 
+
+
   
     def update 
+        get_playlist
+        redirect_if_not_authorized
         current_playlist
         if @playlist.update(playlist_params)
             redirect_to playlist_path(@playlist)
@@ -47,6 +53,8 @@ class PlaylistsController < ApplicationController
     end 
   
     def destroy 
+        get_playlist
+        redirect_if_not_authorized
         current_playlist
         @playlist.destroy 
         redirect_to playlists_path
@@ -57,5 +65,15 @@ class PlaylistsController < ApplicationController
     def playlist_params
         params.require(:playlist).permit(:name, :creator_id, song_ids: [])
     end 
+
+    def get_playlist
+        @playlist = Playlist.find_by_id(params[:id])
+    end
+
+    def redirect_if_not_authorized
+        if @playlist.creator_id != current_user.id
+            redirect_to playlists_path
+        end
+    end
   
   end

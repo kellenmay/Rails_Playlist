@@ -9,7 +9,7 @@ def current_playlist
 end
 
 def current_nested_playlist
-    @playlists = Playlist.find_by_id(params[:playlist_id])
+    @playlist = Playlist.find_by_id(params[:playlist_id])
 end
 
 

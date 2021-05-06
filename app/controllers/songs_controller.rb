@@ -15,7 +15,8 @@ class SongsController < ApplicationController
     
     def new
         if params[:playlist_id]
-            @playlist = Playlist.find_by(params[:playlist_id])
+            @playlist = Playlist.find_by_id(params[:playlist_id])
+            # @song = Song.new(playlist_id: params[:playlist_id])
             @song = @playlist.songs.build
         else
         @song = Song.new
@@ -23,15 +24,18 @@ class SongsController < ApplicationController
     end
   
     def create  
-        if params[:playlist_id]
-            @playlist = current_nested_playlist
-            @song = @playlist.songs.build(song_params)
-            @playlist.save
-        else
+         if params[:playlist_id]
+        #     # binding.pry
+            # @playlist = current_nested_playlist
+             @s = Song.create(song_params, user_id: current_user.id)
+             @playlist = Playlist.find_by_id(params[:playlist_id])
+             @song = @playlist.playlist_songs << @song
+         else
              @song = Song.new(song_params)
-        end
+         end
+byebug
         if @song.save
-            redirect_to playlists_path(@playlist)
+            redirect_to songs_path(@song)
         else 
             flash[:errors] = @song.errors.full_messages
             render :new

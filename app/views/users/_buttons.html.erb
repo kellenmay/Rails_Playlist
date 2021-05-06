@@ -1,14 +1,22 @@
 <header>
+
+
+<% if @playlist %>
+   <% if @playlist.creator_id == current_user.id %> 
+        <%= button_to "Add Songs to Playlist", new_playlist_playlist_song_path(@playlist), method: :get %>
+        <%= button_to "Delete", @playlist, method: :delete %>
+    <% end%>
+<% end%>
 <% if current_user %>
-<li><%= link_to "Profile",    '/profile' %></li>
+<%= button_to "Profile",    '/profile', method: :get %>
 <% end %>
-<li><%= link_to "Create New Song", '/songs/new' %></li>
+<%= button_to "Create New Song", '/songs/new', method: :get %>
 
-<li><%= link_to "Create New Playlist", '/playlists/new' %></li>
+<%= button_to "Create New Playlist", '/playlists/new', method: :get %>
 
-<li><%= link_to "Songs",    songs_path %></li>
+<%= button_to "Songs",    songs_path, method: :get %>
 
-<li><%= link_to "Playlists", playlists_path %></li>
+<%= button_to "Playlists", playlists_path, method: :get %>
 
 
     

@@ -1,6 +1,6 @@
   
 <h1>Create New Playlist:</h1>
-<%= form_with model: @playlist, url: playlists_path, method: :post do |f| %>
+<%= form_with model: @playlist, url: playlists_path do |f| %>
 
     <%= f.hidden_field :creator_id, value: current_user.id %>
     <%= f.label :name %>
@@ -10,4 +10,3 @@
     <%= f.submit 'Create Playlist' %>
 <% end %>
 
-    <%= button_to "Home", "/user/:id", method: :post, id: ":user_id" %>

@@ -1,2 +1,11 @@
-<%= render partial: "form" %>
-<%= render partial: "buttons" %>
+<%= form_with model: @playlist, url: playlist_path(@playlist) do |f| %>
+
+    <%= f.hidden_field :creator_id, value: current_user.id %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+    <br>
+    <%end%>
+
+
+<%= render partial: "/users/buttons" %>

@@ -2,11 +2,18 @@
 
 <% @playlists.each do |playlist| %>
     <p>
-        <li>Title:<%= playlist.name %> Artist:<%= playlist.user.email %> 
 
-            <%= link_to "View", playlist, method: :show %></li>
+
+        <li>Title:<%= playlist.name %> Artist:<%= current_user.email %> 
+
+
+            <%= button_to "View", playlist, method: :get %></li>
 
     </p>
 <% end %>
+
+
+
+
 
 <%= render partial: "users/buttons" %>
