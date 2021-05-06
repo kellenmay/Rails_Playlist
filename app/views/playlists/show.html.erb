@@ -2,6 +2,19 @@
 
 <p><%= @playlist.name %></p>
 
+  <ul>  <% @playlist.playlist_users.each do |r|%>
+   <li> User:
+    <b><%= r.user.email%></b>
+    <br>
+    Rating:
+    <b><%= r.rating %></b>
+    out of 5.</li>
+    <%end%> </ul>
+
+ <% %>
+
+
+
 <% @playlist.songs.each do |song| %>
     <p>
         Title:<%= song.title %>
@@ -11,10 +24,13 @@
 <% end %>
 
 
+
     <% if @playlist.user_id == current_user.id%>
         <li><%= link_to "Add Songs to Playlist", new_playlist_song_path(@playlist) %></li>
         <%= button_to "Delete", @playlist, method: :delete %>
     <% end%>
 
+
+ <% %>
 
 <%= render partial: "users/buttons" %>

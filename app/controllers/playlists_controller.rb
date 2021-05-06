@@ -13,7 +13,7 @@ class PlaylistsController < ApplicationController
   
     def create
         @playlist = Playlist.new(name: playlist_params[:name])
-        @playlist.user_id = current_user.id
+        @playlist.creator_id = current_user.id
         if @playlist.save
             playlist_params[:song_ids].each do |song|
                 if song != ""
@@ -22,12 +22,15 @@ class PlaylistsController < ApplicationController
             end
             redirect_to playlist_path(@playlist)
         else 
+            binding.pry
             render :new
         end 
     end 
 
     def show 
         current_playlist
+        @user = PlaylistUser.find_by_id(params[:user_id])
+        
     end 
   
     def edit 
@@ -52,7 +55,7 @@ class PlaylistsController < ApplicationController
   private 
   
     def playlist_params
-        params.require(:playlist).permit(:name, song_ids: [])
+        params.require(:playlist).permit(:name, :creator_id, song_ids: [])
     end 
   
   end

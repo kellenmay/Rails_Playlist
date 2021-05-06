@@ -1,0 +1,11 @@
+<h1>Playlist Rating</h1>
+<%= form_with model: @playlist_user, url: playlist_playlist_users_path(@playlist) do |f|%>
+    <%= f.hidden_field :playlist_id, value: @playlist.id%>
+    <%= f.hidden_field :user_id, value: current_user.id%>
+    <%= f.label :rating %>
+    <%= f.number_field :rating %>
+    <%= f.submit 'Add Rating' %>
+<% end %>
+
+
+

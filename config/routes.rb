@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'playlist_user/new'
+  get 'playlist_user/create'
+  get 'playlist_user/edit'
+  get 'playlist_user/update'
+  get 'playlist_user/destroy'
   root 'sessions#new'
   
   get '/login', to: 'sessions#new'
@@ -17,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :playlists do
     resources :songs, only: [:index, :new, :create]
+    resources :playlist_users, only: [:new, :create, :edit, :update, :destory]
   end
 
 

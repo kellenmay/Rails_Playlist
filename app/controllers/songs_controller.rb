@@ -27,15 +27,12 @@ class SongsController < ApplicationController
             @playlist = current_nested_playlist
             @song = @playlist.songs.build(song_params)
             @playlist.save
-            redirect_to playlists_path(@playlist
         else
              @song = Song.new(song_params)
         end
-        binding.pry
         if @song.save
             redirect_to playlists_path(@playlist)
         else 
-            
             flash[:errors] = @song.errors.full_messages
             render :new
         end 
