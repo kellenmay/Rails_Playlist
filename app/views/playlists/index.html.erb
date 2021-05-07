@@ -1,11 +1,9 @@
 <h1>All Playlists:</h1>
 
 <% @playlists.each do |playlist| %>
-    <p>
+    <p> <%@user = all_users.find_by_id(playlist.user_id)%>
 
-
-        <li>Title:<%= playlist.name %> Artist:<%= current_user.email %> 
-
+        <li>Title:<%= playlist.name %> Artist:<%= find_user(playlist.user_id).email %> 
 
             <%= button_to "View", playlist, method: :get %></li>
 

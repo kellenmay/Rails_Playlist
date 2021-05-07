@@ -2,9 +2,11 @@ class PlaylistsController < ApplicationController
     include UsersHelper
     include SongsHelper
     include PlaylistsHelper
+    before_action :get_playlist 
+    before_action :redirect_if_not_authorized, only: [:edit, :update, :destroy]
 
     def index 
-        all_playlists
+        @playlists = Playlist.all
     end 
     
     def new
@@ -12,8 +14,9 @@ class PlaylistsController < ApplicationController
     end
   
     def create
-        @playlist = Playlist.new(name: playlist_params[:name])
-        @playlist.creator_id = current_user.id
+        @playlist = Playlist.new(playlist_params)
+        @playlist.user_id = current_user.id
+        
         if @playlist.save
             playlist_params[:song_ids].each do |song|
                 if song != ""
@@ -22,29 +25,23 @@ class PlaylistsController < ApplicationController
             end
             redirect_to playlist_path(@playlist)
         else 
-
             render :new
         end 
     end 
 
     def show 
-        current_playlist
         @user = PlaylistUser.find_by_id(params[:user_id])
-        
+
     end 
   
-    def edit 
-        get_playlist
+    def edit
         redirect_if_not_authorized
-        current_playlist
     end 
 
 
   
     def update 
-        get_playlist
         redirect_if_not_authorized
-        current_playlist
         if @playlist.update(playlist_params)
             redirect_to playlist_path(@playlist)
         else 
@@ -53,9 +50,7 @@ class PlaylistsController < ApplicationController
     end 
   
     def destroy 
-        get_playlist
         redirect_if_not_authorized
-        current_playlist
         @playlist.destroy 
         redirect_to playlists_path
     end 
@@ -63,7 +58,7 @@ class PlaylistsController < ApplicationController
   private 
   
     def playlist_params
-        params.require(:playlist).permit(:name, :creator_id, song_ids: [])
+        params.require(:playlist).permit(:name, :user_id, song_ids: [])
     end 
 
     def get_playlist
@@ -71,7 +66,7 @@ class PlaylistsController < ApplicationController
     end
 
     def redirect_if_not_authorized
-        if @playlist.creator_id != current_user.id
+        if @playlist.user_id != current_user.id
             redirect_to playlists_path
         end
     end

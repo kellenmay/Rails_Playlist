@@ -10,7 +10,12 @@ module SongsHelper
         end
     end
 
-
+    def song_display
+        @playlist.songs.uniq.each do |song|
+            song.title
+            song.artist
+        end
+    end
 
 
 end

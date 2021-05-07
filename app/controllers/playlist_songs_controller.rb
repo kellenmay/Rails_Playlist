@@ -1,14 +1,12 @@
 class PlaylistSongsController < ApplicationController
+    before_action :find_playlist
 
     def new
         @playlist_song = PlaylistSong.new
-        @playlist = Playlist.find_by_id(params[:playlist_id])
     end
 
     def create
-        @playlist = Playlist.find_by_id(params[:playlist_id])
         @playlist_song = @playlist.playlist_songs.build(playlist_song_params)
-        binding.pry
        if  @playlist_song.save
         redirect_to playlist_path(@playlist)
        else
@@ -26,6 +24,10 @@ class PlaylistSongsController < ApplicationController
 
     def playlist_song_params
         params.require(:playlist_song).permit(:song_id, :playlist_id)
+    end
+
+    def find_playlist
+        @playlist = Playlist.find_by_id(params[:playlist_id])
     end
 
 

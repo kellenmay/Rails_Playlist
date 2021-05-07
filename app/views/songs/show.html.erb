@@ -1,14 +1,16 @@
 
 <h1>Songs Show Page</h1>
 
+To add this to a playlist, go to your desired playlist
+<br><br>
 Title: <%= @song.title %>
 <br>
 Artist: <%= @song.artist %>
-<%binding.pry%>
+<br><br>
     <% if @song.user_id == current_user.id%>
         <%= button_to "Delete", @song, method: :delete %>
+            or 
+        <%= button_to "Edit Song", edit_song_path(@song), method: :get %> 
     <%end%>
-
-
-
+<br>
 <%= render partial: "users/buttons" %>

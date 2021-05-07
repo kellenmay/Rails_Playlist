@@ -11,6 +11,10 @@ module UsersHelper
         end
     end
   end
+
+  def all_users
+    @users = User.all
+  end 
   
   def current_user_id
     session[:user_id]

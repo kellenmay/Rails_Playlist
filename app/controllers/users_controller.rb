@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   include SongsHelper
   include PlaylistsHelper
   include ApplicationHelper
+  before_action :find_user
 
   def index 
       @users = User.all
@@ -28,14 +29,15 @@ end
   end 
 
   def show
+    # binding.pry
   end
 
   def edit 
-    find_user
+    
   end 
 
   def update 
-    find_user
+    
       if @user.update(user_params)
           redirect_to user_path(@user)
       else 
@@ -48,15 +50,14 @@ end
   end
 
   def destroy 
-    find_user
       @user.destroy 
-      redirect_to users_path
+      redirect_to login_path
   end 
 
 private 
 
   def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password, :password_confirmation)
   end 
 
   def find_user
@@ -64,20 +65,4 @@ private
   end
 
 
-end
-
-
-
-def create
-  if params[:playlist_id]
-      @playlist = Playlist.find_by(params[:playlist_id])
-      @songs = @playlist.songs.build(song_params)
-  else
-       @song = Song.new(song_params)
-  end
-  if @song.save
-      redirect_to song_path(@song)
-  else 
-      render :new
-  end 
 end 

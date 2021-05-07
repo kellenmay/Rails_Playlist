@@ -3,6 +3,7 @@ class PlaylistUsersController < ApplicationController
   include SongsHelper
   include PlaylistsHelper
   include ApplicationHelper
+  before_action :find_playlist
 
 
   def new
@@ -11,7 +12,6 @@ class PlaylistUsersController < ApplicationController
   end
 
   def create
-  
     @playlist = Playlist.find_by_id(params[:playlist_id])
     @playlist_user = @playlist.playlist_users.build(playlist_user_params)
     if @playlist_user.save
@@ -36,5 +36,10 @@ class PlaylistUsersController < ApplicationController
   def playlist_user_params
       params.require(:playlist_user).permit(:rating, :user_id, :playlist_id)
   end
+
+  
+  def find_playlist
+    @playlist = Playlist.find_by_id(params[:playlist_id])
+end
 
 end
