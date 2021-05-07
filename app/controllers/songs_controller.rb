@@ -3,6 +3,7 @@ class SongsController < ApplicationController
     include PlaylistsHelper
     include SongsHelper
     before_action :find_song
+    before_action :redirect_if_not_authorized_song, only: [:edit, :update, :destroy]
 
     def index 
         if params[:playlist_id]
@@ -61,6 +62,12 @@ class SongsController < ApplicationController
 
     def find_song
         @song = Song.find_by_id(params[:id])
+    end
+
+    def redirect_if_not_authorized_song
+        if @song.user_id != current_user.id
+            redirect_to song_path(@song)
+        end
     end
   
   end

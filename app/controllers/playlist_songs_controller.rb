@@ -3,9 +3,11 @@ class PlaylistSongsController < ApplicationController
 
     def new
         @playlist_song = PlaylistSong.new
+        @songs = Song.all
     end
 
     def create
+        redirect_if_not_authorized
         @playlist_song = @playlist.playlist_songs.build(playlist_song_params)
        if  @playlist_song.save
         redirect_to playlist_path(@playlist)
@@ -30,6 +32,13 @@ class PlaylistSongsController < ApplicationController
         @playlist = Playlist.find_by_id(params[:playlist_id])
     end
 
+    private
+
+    def redirect_if_not_authorized
+        if @playlist.user_id != current_user.id
+            redirect_to playlists_path
+        end
+    end
 
     
 end

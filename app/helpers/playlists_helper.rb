@@ -26,6 +26,5 @@ def find_user(id)
 end
 
 
-
     
 end

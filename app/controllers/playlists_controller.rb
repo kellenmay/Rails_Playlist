@@ -11,20 +11,33 @@ class PlaylistsController < ApplicationController
     
     def new
         @playlist = Playlist.new
+        @songs = Song.all
     end
   
     def create
         @playlist = Playlist.new(playlist_params)
         @playlist.user_id = current_user.id
+        @songs = Song.all
+
+        if @playlist.name
+            @playlist.save
+            flash[:errors] = @playlist.errors.full_messages
+        end
         
         if @playlist.save
-            playlist_params[:song_ids].each do |song|
-                if song != ""
-                 PlaylistSong.create(playlist_id: @playlist.id, song_id: song)
+           
+            if playlist_params[:song_ids] != nil
+                playlist_params[:song_ids].each do |song|
+                    if song != "" 
+                    PlaylistSong.create(playlist_id: @playlist.id, song_id: song)
+                    end
                 end
             end
             redirect_to playlist_path(@playlist)
+
         else 
+            @playlist = Playlist.new(playlist_params)
+            
             render :new
         end 
     end 
@@ -35,13 +48,11 @@ class PlaylistsController < ApplicationController
     end 
   
     def edit
-        redirect_if_not_authorized
     end 
 
 
   
     def update 
-        redirect_if_not_authorized
         if @playlist.update(playlist_params)
             redirect_to playlist_path(@playlist)
         else 
@@ -50,7 +61,6 @@ class PlaylistsController < ApplicationController
     end 
   
     def destroy 
-        redirect_if_not_authorized
         @playlist.destroy 
         redirect_to playlists_path
     end 

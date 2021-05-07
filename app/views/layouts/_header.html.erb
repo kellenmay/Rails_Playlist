@@ -3,9 +3,11 @@
         <div class="container">
           <nav>
             <ul class="nav pull-right">
+            <% if current_user %>
                     <%= button_to "Home",    '/profile', method: :get %>
                     
                     <%= button_to "Log Out",    '/logout', method: :get %></li>
+                    <% end %>
             </ul>
           </nav>
         </div>

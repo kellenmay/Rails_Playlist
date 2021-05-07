@@ -1,0 +1,23 @@
+
+[1mFrom:[0m /home/kellenmay/code/development/phase-3/phase_three_project/app/controllers/playlists_controller.rb:22 PlaylistsController#create:
+
+    [1;34m17[0m: [32mdef[0m [1;34mcreate[0m
+    [1;34m18[0m:     @playlist = [1;34;4mPlaylist[0m.new(playlist_params)
+    [1;34m19[0m:     @playlist.user_id = current_user.id
+    [1;34m20[0m:     @songs = [1;34;4mSong[0m.all
+    [1;34m21[0m: 
+ => [1;34m22[0m:    binding.pry
+    [1;34m23[0m:     [32mif[0m @playlist.save &&
+    [1;34m24[0m:         playlist_params[[33m:song_ids[0m].each [32mdo[0m |song|
+    [1;34m25[0m:             [32mif[0m song != [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m 
+    [1;34m26[0m:              [1;34;4mPlaylistSong[0m.create([35mplaylist_id[0m: @playlist.id, [35msong_id[0m: song)
+    [1;34m27[0m:             [32melse[0m
+    [1;34m28[0m: 
+    [1;34m29[0m:             [32mend[0m
+    [1;34m30[0m:         [32mend[0m
+    [1;34m31[0m:         redirect_to playlist_path(@playlist)
+    [1;34m32[0m:     [32melse[0m 
+    [1;34m33[0m:         render [33m:new[0m
+    [1;34m34[0m:     [32mend[0m 
+    [1;34m35[0m: [32mend[0m 
+

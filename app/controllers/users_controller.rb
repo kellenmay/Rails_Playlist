@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   include PlaylistsHelper
   include ApplicationHelper
   before_action :find_user
+  before_action :redirect_if_not_current_user, only: [:edit, :update, :destroy]
 
   def index 
       @users = User.all
@@ -62,6 +63,12 @@ private
 
   def find_user
     @user = User.find_by_id(params[:id])
+  end
+
+  def redirect_if_not_current_user
+    if @user.id != current_user.id
+        redirect_to user_path(@user)
+    end
   end
 
 
