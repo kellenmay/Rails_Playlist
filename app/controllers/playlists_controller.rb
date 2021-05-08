@@ -6,6 +6,7 @@ class PlaylistsController < ApplicationController
     before_action :redirect_if_not_authorized, only: [:edit, :update, :destroy]
 
     def index 
+        binding.pry
         @playlists = Playlist.all
     end 
     
