@@ -1,7 +1,8 @@
   
 <h1>Create New Playlist:</h1>
 <%= form_with model: @playlist do |f| %>
-
+    <%= render partial: "/users/errors", locals: {object: @playlist}%>
+    
     <%= f.hidden_field :user_id, value: current_user.id %>
 
     <%= f.label :name %>
