@@ -21,7 +21,6 @@ class PlaylistsController < ApplicationController
 
         if @playlist.name
             @playlist.save
-            flash[:errors] = @playlist.errors.full_messages
         end
         
         if @playlist.save

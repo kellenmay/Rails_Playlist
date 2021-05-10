@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @users = User.all
   end 
   
-  def new # render a signup form
+  def new 
     if !logged_in?
         @user = User.new
     else 
@@ -24,13 +24,11 @@ end
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else 
-        flash[:errors] = @user.errors.full_messages
           render :new
       end 
   end 
 
   def show
-    # binding.pry
   end
 
   def edit 
