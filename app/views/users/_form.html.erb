@@ -1,6 +1,7 @@
 
 <h1>Sign up Here:</h1>
 <%= form_with model: @user do |f| %>
+    <%= render partial: "errors" %>
     <%= f.label :name %>
     <%= f.text_field :name %><br>
     <%= f.label :email %>

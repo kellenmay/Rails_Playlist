@@ -3,10 +3,8 @@
 <% @playlists.each do |playlist| %>
     <p> <%@user = all_users.find_by_id(playlist.user_id)%>
 
-        <li>Title:<%= playlist.name %> Artist:<%= find_user(playlist.user_id).email %> 
-
-            <%= button_to "View", playlist, method: :get %></li>
-
+        <li>Title:<%= link_to playlist.name, playlist_path(playlist) %> <br>
+        Artist:<%= find_user(playlist.user_id).email %> 
     </p>
 <% end %>
 

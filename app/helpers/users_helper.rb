@@ -46,12 +46,17 @@ module UsersHelper
   end
 
   def user_profile_page
+    # binding.pry
+    if user_playlists != []
     user_playlists.each do |p|
       @playlist_name = p.name
-    end
+     end
     @playlist_name
+    @playlist = Playlist.find_by_name(@playlist_name)
+    link_to @playlist_name, playlist_path(@playlist)
   end
-
+  end
+ 
   def profile_view_from_profile
     user_playlists.each do |p|
       @playlist_id = p.id

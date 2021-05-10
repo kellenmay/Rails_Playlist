@@ -9,10 +9,9 @@
 <ul>
 <% @songs.each do |song| %>
     <p>
-       <li> Title: <%= song.title %></li>
+       <li> Title: <%=link_to song.title, song_path(song) %></li>
         <li>Artist: <%= song.artist %> </li>
 
-     <%= button_to "View", song, method: :get %>
         </p>
 <% end %>
 </ul>

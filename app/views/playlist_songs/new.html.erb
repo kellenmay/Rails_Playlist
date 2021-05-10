@@ -1,5 +1,9 @@
-<%= form_with model: @playlist_song, url: playlist_playlist_songs_path(@playlist) do |f| %>
+<%= form_with model: [@playlist, @playlist_song] do |f| %>
 <%= f.hidden_field :playlist_id, value: @playlist.id%>
 <%= f.collection_select(:song_id, @songs.all, :id, :title, prompt: true) %>
 <%= f.submit 'Add Song to Playlist'%>
 <%end%>
+
+
+
+<%= render partial: "users/buttons" %>

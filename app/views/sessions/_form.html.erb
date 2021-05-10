@@ -1,3 +1,14 @@
+
+  
+<h1>Login:</h1>
+
+<% flash.keys.each do |type|%>
+    <div id="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <%= flash[type]%>
+    </div>
+<%end%>
+
 <div class="container login">
   <section id="login-btns">
     <button type="button" name="button" class="login-button"  onclick="signIn()">Sign In</button>

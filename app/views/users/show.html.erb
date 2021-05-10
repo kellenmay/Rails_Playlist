@@ -4,9 +4,11 @@ Here is a list of your playlists:
 
 <br>
 Playlist Name:
+<br>
+
 <%= user_profile_page %><br>
 
-
+<br>
 
 <% if current_user %>
     <%= button_to 'Delete', @user, method: :delete, :confirm => "Are you sure?" %><br>
