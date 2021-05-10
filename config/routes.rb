@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'playlist_user/edit'
   get 'playlist_user/update'
   get 'playlist_user/destroy'
+  get '/top_song', to: 'songs#top_song'
   root 'sessions#new'
   
   get '/login', to: 'sessions#new'

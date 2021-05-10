@@ -46,6 +46,10 @@ class SongsController < ApplicationController
             render :edit
         end 
     end 
+
+    def top_song
+        @top_song = Song.top_song.first
+    end
   
     def destroy
         @song.destroy 
