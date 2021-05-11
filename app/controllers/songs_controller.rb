@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
-    include UsersHelper
-    include PlaylistsHelper
-    include SongsHelper
+    # include UsersHelper
+    # include PlaylistsHelper
+    # include SongsHelper
     before_action :find_song
     before_action :redirect_if_not_authorized_song, only: [:edit, :update, :destroy]
 

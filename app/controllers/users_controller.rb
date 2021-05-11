@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  include UsersHelper
-  include SongsHelper
-  include PlaylistsHelper
-  include ApplicationHelper
+  # include UsersHelper
+  # include SongsHelper
+  # include PlaylistsHelper
+  # include ApplicationHelper
   before_action :find_user
   before_action :redirect_if_not_current_user, only: [:edit, :update, :destroy]
 

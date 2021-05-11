@@ -1,8 +1,5 @@
 class PlaylistUsersController < ApplicationController
-  include UsersHelper
-  include SongsHelper
-  include PlaylistsHelper
-  include ApplicationHelper
+
   before_action :find_playlist
 
 

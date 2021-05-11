@@ -8,7 +8,7 @@ Title: <%= @song.title %>
 Artist: <%= @song.artist %>
 <br><br>
     <% if @song.user_id == current_user.id%>
-        <%= button_to "Delete", @song, method: :delete %>
+        <%= button_to "Delete Song", @song, method: :delete %>
             or 
         <%= button_to "Edit Song", edit_song_path(@song), method: :get %> 
     <%end%>
