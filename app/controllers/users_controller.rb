@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   before_action :find_user
-  before_action :redirect_if_not_current_user, only: [:edit, :show, :update, :destroy]
+  before_action :redirect_if_not_current_user, only: [:edit, :update, :destroy]
 
   def index 
       @users = User.all
@@ -61,9 +61,7 @@ private
   end
 
   def redirect_if_not_current_user
-    if current_user == nil
-      redirect_to login_path
-    else  @user.id != current_user.id
+    if @user.id != current_user.id
         redirect_to user_path(@user)
     end
   end
