@@ -6,7 +6,12 @@ class PlaylistsController < ApplicationController
     before_action :redirect_if_not_authorized, only: [:edit, :update, :destroy]
 
     def index 
-        @playlists = Playlist.all
+        if params[:user_id]
+            @user = User.find_by_id(params[:user_id])
+            @playlists = @user.playlist_users
+        else
+            @playlists = Playlist.all
+        end
     end 
     
     def new
@@ -16,15 +21,11 @@ class PlaylistsController < ApplicationController
   
     def create
         @playlist = Playlist.new(playlist_params)
-        @playlist.user_id = current_user.id
         @songs = Song.all
-
         if @playlist.name
             @playlist.save
         end
-        
         if @playlist.save
-           
             if playlist_params[:song_ids] != nil
                 playlist_params[:song_ids].each do |song|
                     if song != "" 
@@ -33,7 +34,6 @@ class PlaylistsController < ApplicationController
                 end
             end
             redirect_to playlist_path(@playlist)
-
         else 
             @playlist = Playlist.new(playlist_params)
             
@@ -63,6 +63,8 @@ class PlaylistsController < ApplicationController
         @playlist.destroy 
         redirect_to playlists_path
     end 
+
+
   
   private 
   

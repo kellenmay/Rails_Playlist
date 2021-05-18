@@ -24,7 +24,8 @@ module UsersHelper
     if current_user
     @user = User.find_by_id(session[:user_id])
     @user.email
-
+    else
+      redirect_to new_user_path
     end
   
   end
