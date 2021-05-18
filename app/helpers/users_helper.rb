@@ -21,8 +21,12 @@ module UsersHelper
   end
 
   def current_user_email
+    if current_user
     @user = User.find_by_id(session[:user_id])
     @user.email
+
+    end
+  
   end
 
 

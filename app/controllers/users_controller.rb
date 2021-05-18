@@ -64,6 +64,7 @@ private
     if @user.id != current_user.id
         redirect_to user_path(@user)
     end
+    
   end
 
 
