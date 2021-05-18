@@ -1,5 +1,5 @@
 <h1>Songs on Playlist</h1>
-<% if @playlist.user_id != current_user.id %>
+<% if current_user && @playlist.user_id != current_user.id %>
 <%= button_to "Rate Playlist", new_playlist_playlist_user_path(@playlist.id), method: :get %>
 <% end %>
 
@@ -30,7 +30,7 @@ Currently No Songs in this Playlist
 <%end%>
 
 </div>
-<% if @playlist.user_id == current_user.id %>
+<% if current_user && @playlist.user_id == current_user.id %>
   <%= button_to "Edit Playlist", edit_playlist_path(@playlist), method: :get %> <br>
 <% end %>
 

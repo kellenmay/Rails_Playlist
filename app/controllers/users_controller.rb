@@ -1,17 +1,14 @@
 class UsersController < ApplicationController
-  # include UsersHelper
-  # include SongsHelper
-  # include PlaylistsHelper
-  # include ApplicationHelper
+  include ApplicationHelper
   before_action :find_user
-  before_action :redirect_if_not_current_user, only: [:edit, :update, :destroy]
+  before_action :redirect_if_not_current_user, only: [:edit, :show, :update, :destroy]
 
   def index 
       @users = User.all
   end 
   
   def new 
-    if !logged_in?
+    if !current_user
         @user = User.new
     else 
         redirect_to root_path
@@ -64,7 +61,9 @@ private
   end
 
   def redirect_if_not_current_user
-    if @user.id != current_user.id
+    if current_user == nil
+      redirect_to login_path
+    else  @user.id != current_user.id
         redirect_to user_path(@user)
     end
   end
